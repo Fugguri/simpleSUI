@@ -12,7 +12,7 @@ const {
 
 const uiStore = useUiStore();
 const authStore = useAuthStore();
-
+const userAddr = authStore.userSuiAddress.toString()
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 
@@ -110,7 +110,7 @@ const depositToCasino = async () => {
         </button>
 
         <button v-else class="bg-gray-300 text-gray-900 px-3 py-2 rounded-full" @click="disconnect">
-          Logout
+          Logout <br> {{ userAddr.slice(0, 4) }}...{{ userAddr.slice(-4) }}
         </button>
       </div>
     </div>

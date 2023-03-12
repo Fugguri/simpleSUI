@@ -32,6 +32,7 @@ const totalGames = ref(0);
 const uiStore = useUiStore();
 const bid = ref("10000")
 const selectedSide = ref("heads")
+let coin_s = ref("H")
 
 const flip = () => {
     var flipTimeout;
@@ -47,7 +48,6 @@ const flip = () => {
             coinContainer.classList.add("flip");
             result.innerHTML = "";
         }
-
     };
 }
 const executeGamble = () => {
@@ -58,6 +58,14 @@ const executeGamble = () => {
     gameStarted.value = true;
     isLoading.value = true;
 
+    var coin = document.getElementById("coin");
+    var coinContainer = document.getElementById("coin-container");
+    var result = document.getElementById("result");
+    if (!coin.classList.contains("flip")) {
+        coin.classList.add("flip");
+        coinContainer.classList.add("flip");
+        result.innerHTML = "";
+    }
     const coinId = getSuitableCoinId(6000)
     executeMoveCall({
         packageObjectId: moduleAddress,
@@ -67,17 +75,9 @@ const executeGamble = () => {
         function: 'gamble',
         gasBudget: 1000
     }).then(res => {
-        var coin = document.getElementById("coin");
-        var coinContainer = document.getElementById("coin-container");
-        var result = document.getElementById("result");
         totalGames.value++;
         const status = res?.effects?.status?.status;
         console.log(res?.effects?.status?.status)
-        if (!coin.classList.contains("flip")) {
-            coin.classList.add("flip");
-            coinContainer.classList.add("flip");
-            result.innerHTML = "";
-        }
         coin.classList.remove("flip");
         coinContainer.classList.remove("flip");
         if (status === 'success') {
@@ -85,9 +85,14 @@ const executeGamble = () => {
             console.log(SuizinoEventResult)
             // return SuizinoEventResult
             let fields = SuizinoEventResult?.moveEvent?.fields;
-            result.innerHTML = fields.coin_side ? "heads" : "tails";
+            let side = fields.coin_side ? "Heads" : "Tails"
+            coin_s = side[0]
+
+            result.innerHTML = side;
             gameResultsObject.value = fields;
             gameResults.value = [fields.slot_1,];
+
+
             checkGameStatus()
             // We just mark all slots as "started" and we let the interval that is already running
             // take care of showing the results. To make it more smooth,
@@ -129,12 +134,12 @@ const checkGameStatus = () => {
         class="lucky-wheel-slot bg-white overflow-hidden dark:bg-gray-700 h-[250px] md:h-[320px] rounded-lg shadow flex items-center justify-center">
         <h2> The result is</h2>
         <div id="coin-container">
-            <div id="coin"> $ </div>
+            <div id="coin"> {{ coin_s }} </div>
         </div>
         <h2 id="result">tails</h2>
         <br>
     </div>
-
+    <!-- <button @click="flip">Flip</button> -->
     <div class="mt-6 text-center">
         <button v-if="!authStore.hasWalletPermission"
             class="bg-gray-800 mx-auto ease-in-out duration-500 hover:px-10 dark:bg-gray-800 flex items-center text-white px-5 py-2 rounded-full"
@@ -186,18 +191,18 @@ const checkGameStatus = () => {
         <!-- <p class="text-xs mt-5">Double you bid</p> -->
     </div>
     <!-- 
-                                                                                    <div class="flip-button">
-                                                                                        <select v-model="selectedSide" placeholder="Выберите сторону"
-                                                                                            class="bg-gray-800 mx-auto ease-in-out duration-500 hover:px-10 dark:bg-gray-800 flex items-center text-white px-5 py-2 rounded-full">
-                                                                                            <option value="heads" selected="selected">Heads</option>
-                                                                                            <option value="tails">Tails</option>
-                                                                                        </select>
-                                                                                        <br>
-                                                                                        <input
-                                                                                            class="bg-gray-800 mx-auto ease-in-out duration-500 hover:px-10 dark:bg-gray-800 flex items-center text-white px-5 py-2 rounded-full"
-                                                                                            v-model="bid" @keypress="isNumber(uiStore.setNotification('only digit accept'))"
-                                                                                            placeholder="Введите вашу ставку">
-                                                                                    </div> -->
+                                                                                                                                                                                <div class="flip-button">
+                                                                                                                                                                                    <select v-model="selectedSide" placeholder="Выберите сторону"
+                                                                                                                                                                                        class="bg-gray-800 mx-auto ease-in-out duration-500 hover:px-10 dark:bg-gray-800 flex items-center text-white px-5 py-2 rounded-full">
+                                                                                                                                                                                        <option value="heads" selected="selected">Heads</option>
+                                                                                                                                                                                        <option value="tails">Tails</option>
+                                                                                                                                                                                    </select>
+                                                                                                                                                                                    <br>
+                                                                                                                                                                                    <input
+                                                                                                                                                                                        class="bg-gray-800 mx-auto ease-in-out duration-500 hover:px-10 dark:bg-gray-800 flex items-center text-white px-5 py-2 rounded-full"
+                                                                                                                                                                                        v-model="bid" @keypress="isNumber(uiStore.setNotification('only digit accept'))"
+                                                                                                                                                                                        placeholder="Введите вашу ставку">
+                                                                                                                                                                                </div> -->
 </template>
 <style scoped>
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);

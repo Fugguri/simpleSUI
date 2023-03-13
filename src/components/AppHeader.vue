@@ -110,7 +110,8 @@ const depositToCasino = async () => {
         </button>
 
         <button v-else class="bg-gray-300 text-gray-900 px-3 py-2 rounded-full" @click="disconnect">
-          Logout <br> {{ userAddr.slice(0, 4) }}...{{ userAddr.slice(-4) }}
+          Logout <br>
+          <!-- {{ userAddr.slice(0, 4) }}...{{ userAddr.slice(-4) }} -->
         </button>
       </div>
     </div>

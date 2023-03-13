@@ -71,7 +71,7 @@ const executeGamble = () => {
         packageObjectId: moduleAddress,
         module: 'CoinFlipper',
         typeArguments: [],
-        arguments: ["0x8e65d94ad0b9fb993b69acb03d53f4a1034c31c3", selectedSide.value, bid.value, coinId],
+        arguments: ["0x788d354061f4ef662f02eaa4a699f83fcc6977f0", selectedSide.value, bid.value, coinId],
         function: 'gamble',
         gasBudget: 1000
     }).then(res => {
@@ -88,7 +88,7 @@ const executeGamble = () => {
             let side = fields.coin_side ? "Heads" : "Tails"
             coin_s = side[0]
 
-            result.innerHTML = side;f
+            result.innerHTML = side;
             gameResultsObject.value = fields;
             gameResults.value = [fields.slot_1,];
 
@@ -191,18 +191,18 @@ const checkGameStatus = () => {
         <!-- <p class="text-xs mt-5">Double you bid</p> -->
     </div>
     <!-- 
-                                                                                                                                                                                <div class="flip-button">
-                                                                                                                                                                                    <select v-model="selectedSide" placeholder="Выберите сторону"
-                                                                                                                                                                                        class="bg-gray-800 mx-auto ease-in-out duration-500 hover:px-10 dark:bg-gray-800 flex items-center text-white px-5 py-2 rounded-full">
-                                                                                                                                                                                        <option value="heads" selected="selected">Heads</option>
-                                                                                                                                                                                        <option value="tails">Tails</option>
-                                                                                                                                                                                    </select>
-                                                                                                                                                                                    <br>
-                                                                                                                                                                                    <input
-                                                                                                                                                                                        class="bg-gray-800 mx-auto ease-in-out duration-500 hover:px-10 dark:bg-gray-800 flex items-center text-white px-5 py-2 rounded-full"
-                                                                                                                                                                                        v-model="bid" @keypress="isNumber(uiStore.setNotification('only digit accept'))"
-                                                                                                                                                                                        placeholder="Введите вашу ставку">
-                                                                                                                                                                                </div> -->
+                                                                                                                                                                                            <div class="flip-button">
+                                                                                                                                                                                                <select v-model="selectedSide" placeholder="Выберите сторону"
+                                                                                                                                                                                                    class="bg-gray-800 mx-auto ease-in-out duration-500 hover:px-10 dark:bg-gray-800 flex items-center text-white px-5 py-2 rounded-full">
+                                                                                                                                                                                                    <option value="heads" selected="selected">Heads</option>
+                                                                                                                                                                                                    <option value="tails">Tails</option>
+                                                                                                                                                                                                </select>
+                                                                                                                                                                                                <br>
+                                                                                                                                                                                                <input
+                                                                                                                                                                                                    class="bg-gray-800 mx-auto ease-in-out duration-500 hover:px-10 dark:bg-gray-800 flex items-center text-white px-5 py-2 rounded-full"
+                                                                                                                                                                                                    v-model="bid" @keypress="isNumber(uiStore.setNotification('only digit accept'))"
+                                                                                                                                                                                                    placeholder="Введите вашу ставку">
+                                                                                                                                                                                            </div> -->
 </template>
 <style scoped>
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);

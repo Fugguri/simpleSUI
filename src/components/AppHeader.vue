@@ -12,13 +12,13 @@ const {
 
 const uiStore = useUiStore();
 const authStore = useAuthStore();
-const userAddr = authStore.userSuiAddress.toString()
+let userAddr = ""
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 
 
 onMounted(() => {
-
+  if (authStore.userSuiAddress) { userAddr = authStore.userSuiAddress.toString().slice(-4) }
   // we verify wallet permissions after window has loaded to make sure that
   // the wallet extensions have received their state and window[walletProvider] doesnt return undefined.
   window.addEventListener('load', verifyWalletPermissions);
@@ -57,7 +57,7 @@ const depositToCasino = async () => {
     packageObjectId: moduleAddress,
     module: moduleName,
     typeArguments: [],
-    arguments: ["0x8e65d94ad0b9fb993b69acb03d53f4a1034c31c3", amount, coinId],
+    arguments: ["0xc7eb3e4afd16b846cca09953ca19c2ce24872ab5", amount, coinId],
     function: 'deposit',
     gasBudget: 1000
   }).then(res => {
@@ -110,8 +110,8 @@ const depositToCasino = async () => {
         </button>
 
         <button v-else class="bg-gray-300 text-gray-900 px-3 py-2 rounded-full" @click="disconnect">
-          Logout <br>
-          <!-- {{ userAddr.slice(0, 4) }}...{{ userAddr.slice(-4) }} -->
+          Logout <br>...
+          {{ userAddr }}
         </button>
       </div>
     </div>

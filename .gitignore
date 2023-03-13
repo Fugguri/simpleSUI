@@ -16,7 +16,6 @@ coverage
 move/.idea
 move/build
 move/sui.log*
-move/
 /cypress/videos/
 /cypress/screenshots/
 

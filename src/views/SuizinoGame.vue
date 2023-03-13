@@ -62,7 +62,7 @@ const executeGamble = () => {
     packageObjectId: moduleAddress,
     module: 'Suizino_core',
     typeArguments: [],
-    arguments: ["0x4f00885db359cbf76bfaf55ccce2b9f25c3697ef", coinId],
+    arguments: ["0xc7eb3e4afd16b846cca09953ca19c2ce24872ab5", coinId],
     function: 'gamble',
     gasBudget: 1000
   }).then(res => {
@@ -190,8 +190,8 @@ const checkGameStatus = () => {
 
       <div class="py-6 text-center">
         <!-- <p>
-            Spin now and win big rewards!
-          </p> -->
+              Spin now and win big rewards!
+            </p> -->
 
       </div>
       <div class="lucky-wheel-slots grid grid-cols-3 gap-2 md:gap-5">

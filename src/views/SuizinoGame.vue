@@ -15,7 +15,7 @@ const gameStatuses = {
   LOSS: 'LOSS',
   WIN: 'WIN'
 }
-const spinningList = ["❌", "🦄", "✅", "🐻️", "🤑"];
+const spinningList = ["❌", "🦄", "✅", "🌶", "🤑"];
 const gameStatus = ref(gameStatuses.STANDBY);
 const gameStarted = ref(false);
 const isLoading = ref(false);
@@ -189,12 +189,9 @@ const checkGameStatus = () => {
     <div class="max-w-[700px] mx-auto mb-20 mt-6">
 
       <div class="py-6 text-center">
-        <h2 class="text-3xl font-bold">
-          🎉 Welcome to Suizino 🎉
-        </h2>
-        <p>
-          Spin now and win big rewards!
-        </p>
+        <!-- <p>
+            Spin now and win big rewards!
+          </p> -->
 
       </div>
       <div class="lucky-wheel-slots grid grid-cols-3 gap-2 md:gap-5">

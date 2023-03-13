@@ -88,7 +88,7 @@ const executeGamble = () => {
             let side = fields.coin_side ? "Heads" : "Tails"
             coin_s = side[0]
 
-            result.innerHTML = side;
+            result.innerHTML = side;f
             gameResultsObject.value = fields;
             gameResults.value = [fields.slot_1,];
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="wellcome">
+    <div class="wellcome р-70%">
         <!-- Wellcome to little casino based on SUI DEVnet source -->
 
 
